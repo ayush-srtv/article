@@ -3,22 +3,21 @@ import React, { useEffect, useState } from "react";
 function Article({ children, component: Component = "article", ...props }) {
   const [articleRef, setArticleRef] = useState();
   useEffect(() => {
+    console.log({ articleRef });
     let observer;
     let didCancel = false;
     if (articleRef && IntersectionObserver) {
       observer = new IntersectionObserver(
         (entries) => {
+          console.log(entries);
           entries.forEach((entry) => {
-            if (
-              !didCancel &&
-              (entry.intersectionRatio > 0 || entry.isIntersecting)
-            ) {
+            if (!didCancel) {
+              console.log(entry);
             }
           });
         },
         {
-          threshold: 0.01,
-          rootMargin: "75%"
+          threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
         }
       );
     }
