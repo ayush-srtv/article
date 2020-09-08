@@ -9,17 +9,18 @@ function Article({ children, component: Component = "article", ...props }) {
     if (articleRef && IntersectionObserver) {
       observer = new IntersectionObserver(
         (entries) => {
-          console.log(entries);
           entries.forEach((entry) => {
             if (!didCancel) {
-              console.log(entry);
+              console.log({ entry });
             }
           });
         },
         {
-          threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+          // rootMargin: "0% 0% -25%"
         }
       );
+      observer.observe(articleRef);
     }
 
     return () => {
