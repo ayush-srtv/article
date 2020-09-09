@@ -11,12 +11,13 @@ function Article({ children, component: Component = "article", ...props }) {
         (entries) => {
           entries.forEach((entry) => {
             if (!didCancel) {
+              console.log(Math.abs(entry.intersectionRatio * 100 * 100) / 100);
               console.log({ entry });
             }
           });
         },
         {
-          threshold: [0, 0.25, 0.5, 0.75, 1]
+          threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
           // rootMargin: "0% 0% -25%"
         }
       );
